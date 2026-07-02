@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #F9EFED;
+            /* border:2px solid red; */
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #F6E9E8;
+            padding: 15px 5px;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+
+        header>h1 {
+            color: #8E0304;
+            font-family: Georgia, serif;
+        }
+
+        #burguer {
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            display: block;
+        }
+
+        nav {
+            display: none;
+
+        }
+
+        nav a {
+            color: black;
+            font-size: 17.5px;
+            text-decoration: none;
+            padding: 5px;
+        }
+
+        nav a:hover {}
+
+        .inicio {
+
+            color: #8E0304;
+
+            border-bottom: 3px solid #8E0304;
+
+        }
+
+        nav.ativo {
+            display: flex;
+            flex-flow: column;
+            gap: 2px;
+            padding: 12px;
+            position: absolute;
+            top: 72.5px;
+            right: 0;
+            background-color: #F6E9E8;
+            border-bottom: 0.5px solid rgba(0, 0, 0, 0.336);
+            border-left: 0.5px solid rgba(0, 0, 0, 0.336);
+        }
+
+        @media screen and (min-width: 768px) {
+            nav {
+                display: flex;
+                align-items: center;
+                gap: 2px;
+            }
+
+            #burguer {
+                display: none;
+            }
+
+            #hero {
+                min-height: 300px;
+            }
+        }
+
+        #hero {
+            width: 100%;
+            display: flex;
+            flex-flow: column;
+            justify-content: flex-start;
+            justify-content: space-around;
+            gap: 25px;
+            padding: 20px 5px 20px 20px;
+            /* border: 1px solid green; */
+            background: #8E0304 url(imgs/ChatGPT\ Image\ 2_07_2026\,\ 13_47_52.png) center center no-repeat scroll;
+            background-size: cover;
+
+        }
+
+        #hero h1 {
+
+            color: #8E0304;
+            font-size: 3em;
+            font-family: Georgia, serif;
+        }
+
+        #hero p {
+            font-size: 18px;
+            font-weight: 450;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, .2);
+        }
+
+        #hero a {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            background-color: #8E0304;
+            padding: 15px 30px;
+            display: inline-block;
+            width: fit-content;
+            border-radius: 12px;
+
+        }
+
+        #destaques {
+            /* display: flex;
+            flex-flow: row wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px; */
+            /* border: 3px solid red; */
+            padding: 20px;
+        }
+
+        #cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+
+        }
+
+        #destaques>h3 {
+            text-align: center;
+            color: #8E0304;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 0px 0px 10px 0px;
+        }
+
+        #destaques>h3::before,
+        #destaques>h3::after {
+            content: '';
+            width: 40px;
+            height: 2px;
+            background-color: #8E0304;
+        }
+
+        .box {
+
+            display: flex;
+            flex-flow: column;
+            border-radius: 18px;
+            overflow: hidden;
+            background-color: white;
+            box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.335);
+            border-top: 0.2px solid rgba(0, 0, 0, 0.264);
+            border-left: 0.2px solid rgba(0, 0, 0, 0.264);
+            transition: all 1s ease;
+        }
+
+        .box:hover {
+            transform: scale(1.02);
+        }
+
+        .box img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .info {
+            display: flex;
+            flex-flow: column;
+            gap: 3px;
+            padding: 5px 5px 5px 10px;
+        }
+
+        .nome {
+            font-size: 17px;
+        }
+
+        .preco {
+            color: #8E0304;
+            font-size: 17px;
+        }
+
+        .comprar {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            background-color: #8E0304;
+            padding: 15px 30px;
+            display: inline-block;
+            width: fit-content;
+            border-radius: 12px;
+            margin-top: 3px;
+        }
+
+        a>i {
+            font-size: 20px;
+        }
+
+        a {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Natchiluama</h1>
+
+        <i class='bx bx-menu' id="burguer" onclick="abrir()"></i>
+
+        <nav id="menu">
+            <a href="#" class="inicio">Inicio</a>
+            <a href="#">Coleções</a>
+            <a href="#">Novidades</a>
+            <a href="#">Sobre nós</a>
+            <a href="https://wa.me/244950841098?text=Olá,%20tenho%20interesse%20na%20vossa%20loja." id="falew">Fale
+                connosco</a>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <h1>Estilo que<br>te representa</h1>
+
+        <p>Descobre peças modernas, conforaveis e<br> feitas para realçar a tua beleza todos os dias</p>
+
+        <a href="https://wa.me/244950841098?text=Olá,%20tenho%20interesse%20na%20vossa%20loja.">
+            <i class='bx bxl-whatsapp'></i>
+            Falar no WhatsApp
+        </a>
+    </section>
+
+    <section id="destaques">
+
+        <h3>
+            <span>EM DESTAQUE</span>
+        </h3>
+
+        <div id="cards">
+            <div class="box">
+                <img src="imgs/Camisa.jpg" alt="">
+                <div class="info">
+                    <strong class="nome">Camisolas</strong>
+                    <strong class="preco">Apartir de 2.500,00 KZ</strong>
+                    <a href="https://wa.me/244950841098?text=Olá,%20tenho%20interesse%20na%20Camisola%20https://raw.githubusercontent.com/cleuviomarcostilson/Natchiluama/refs/heads/main/imgs/Camisa.jpg."
+                        class="comprar" target="_blank"><i class='bx bxl-whatsapp'></i> Quero este produto</a>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="imgs/calças.jpg" alt="">
+                <div class="info">
+                    <strong class="nome">Calças</strong>
+                    <strong class="preco">Apartir de 10.500,00 KZ</strong>
+                    <a href="https://wa.me/244950841098?text=Olá,%20tenho%20interesse%20nas%20Calças%20https://github.com/cleuviomarcostilson/Natchiluama/blob/main/imgs/cal%C3%A7as.jpg?raw=true."
+                        class="comprar" target="_blank"> <i class='bx bxl-whatsapp'></i>Quero este produto</a>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="imgs/sapto.jpg" alt="">
+                <div class="info">
+                    <strong class="nome">Socas</strong>
+                    <strong class="preco">Apartir de 4.500,00 KZ</strong>
+                    <a href="https://wa.me/244950841098?text=Olá,%20tenho%20interesse%20nas%20Socas%20https://github.com/cleuviomarcostilson/Natchiluama/blob/main/imgs/sapto.jpg?raw=true."
+                        class="comprar" target="_blank"> <i class='bx bxl-whatsapp'></i>Quero este produto</a>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="imgs/bleze.jpg" alt="">
+                <div class="info">
+                    <strong class="nome">Blezes</strong>
+                    <strong class="preco">Apartir de 2.500,00 KZ</strong>
+                    <a href="https://wa.me/244950841098?text=Olá,%20tenho%20interesse%20nos%20Blezes%20https://github.com/cleuviomarcostilson/Natchiluama/blob/main/imgs/bleze.jpg?raw=true."
+                        class="comprar" target="_blank"> <i class='bx bxl-whatsapp'></i>Quero este produto</a>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+</body>
+<script>
+
+    let menu = document.querySelector('nav')
+    function abrir() {
+
+        menu.classList.toggle("ativo");
+
+        if (menu.classList.contains("ativo")) {
+            burguer.classList.replace("bx-menu", "bx-x");
+        } else {
+            burguer.classList.replace("bx-x", "bx-menu");
+        }
+
+
+    }
+    window.addEventListener("resize", () => {
+        if (window.innerWidth >= 768) {
+            menu.classList.remove("ativo");
+        }
+    });
+</script>
+
+</html>
